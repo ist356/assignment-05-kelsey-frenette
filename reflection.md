@@ -22,4 +22,4 @@ Examples:
 **Best Reflection** "I learned when to use while vs for loops. While loops are for sentiel-controlled values (waiting for a condition to occur), vs for loops are for iterating over collections of fixed values."
 
 `--- Reflection Below This Line ---`
-
+I'm having trouble with the load code because when I run the debuger in it it says there is no survey_combined cache folder but I'm not sure where in transform that needs to be fixed. I also want to be able to change how the table is viewed in streamlit but i'm not sure how to order the code or if that is even possible. The load code is the hardest for me because I can't really transcribe it so I don't really know what it's doing.
