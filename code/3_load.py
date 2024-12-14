@@ -11,7 +11,6 @@ def upload_file(file_name, bucket_name, object_name=None):
     :param object_name: S3 object name. this should be the file name without the cache/ prefix file.csv
     :return: True if file was uploaded, else False
     """
-    # create resource
     s3 = boto3.resource('s3', 
         endpoint_url='https://play.min.io:9000',
         aws_access_key_id='Q3AM3UQ867SPQQA43P2F',
@@ -21,17 +20,14 @@ def upload_file(file_name, bucket_name, object_name=None):
         verify=False
     ).meta.client
 
-    # create bucket if it does not exist
     response = s3.list_buckets()
     buckets = [bucket['Name'] for bucket in response['Buckets']]
     if bucket_name not in buckets:
         s3.create_bucket(Bucket=bucket_name)   
 
-    # If S3 object_name was not specified, use file_name
     if object_name is None:
         object_name = os.path.basename(file_name)
 
-    # Upload the file
     try:
         response = s3.upload_file(file_name, bucket_name, object_name)
     except ClientError as e:
@@ -46,7 +42,6 @@ if __name__ == '__main__':
         obj = file.replace('cache/', '')
         upload_file(file, bucket, obj)
 
-    # Call the upload_file function
     success = upload_file(file, bucket, obj)
     if success:
         print("Upload succeeded.")
